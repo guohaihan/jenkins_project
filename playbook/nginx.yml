@@ -1,0 +1,11 @@
+---
+- name: 运行开始，进行主机匹配
+  hosts: web
+  remote_user: root
+   
+  vars: 
+    - env: "{{ env_ftp }}"
+
+  roles: 
+    - { role: nginxconf, when: ( env_ftp == "test" )}
+    - { role: nginx_pro, when: ( env_ftp == "prod" )}

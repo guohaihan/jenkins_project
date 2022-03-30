@@ -1,0 +1,11 @@
+---
+#- name: check_config
+#  command: nginx -t
+#  register: result
+
+- name: restart_test
+  service: name=nginx state=restarted
+
+# - name: 进行prod-nginx配置回滚
+#  template: src=/data/backup/nginx.conf.j2 dest=/data/nginx.conf.j2
+#  when: restart_result.stdout == "failed"

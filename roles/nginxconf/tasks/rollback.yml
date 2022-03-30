@@ -1,0 +1,3 @@
+---
+- name: 进行test-nginx配置回滚
+  template: src=/data/backup/nginx.conf dest=/data/nginx.conf

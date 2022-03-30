@@ -1,0 +1,27 @@
+文件说明：
+ ansible.cfg:用于ansible的常用配置，例如设置管理主机列表hosts、日志、并发、超时等
+ hosts: 管理主机列表，可以设置ip、port、用户、ssh密码等，用于ansible调用
+ playbook:用来存放供playbook使用的hosts文件，用于设置主机信息，同hosts，用于ansible-playbook调用
+ roles：用来存放各种项目，每个项目下放根据使用场景新建不同的文件
+   例如：nginxconf项目
+	files/：存放由copy或script模块等调用的文件；
+	templates/：template模块查找所需要模块的目录；
+	tasks/：定义task的基本元素，至少包含一个main.yml文件，其他文件需要在此文件中通过include进行包含；
+	handlers/：触发器，至少应该包含一个名为main.yml文件，其他文件需要在此文件中通过include进行包含；
+	vars/：定义变量，至少应该包含一个main.yml文件，其他文件需要在此文件中通过include进行包含；
+	meta/：定义当前角色的特殊设定及其依赖关系，至少应该包含一个名为main.yml的文件，其他文件需要在此文件中通过include进行包含；
+	default/：设定默认变量时使用此目录中的main.yml文件；
+
+免密登录设置：
+  1，生成私钥；ssh-keygen
+  2，分发私钥；ssh-copy-id root@192.168.51.140 （目标主机ip）
+
+执行命令：
+  启动命令（含备份和部署）：ansible-playbook -i env/test playbook/nginx.yml
+  部署命令：ansible-playbook -i env/test playbook/nginx.yml -t deploy
+  备份命令：ansible-playbook -i env/test playbook/nginx.yml -t backup
+  回滚命令：ansible-playbook -i env/test playbook/nginx.yml -t rollback
+
+第一次部署服务时步骤：
+  1，将tasks/main.yml中first任务注释打开；
+  2，执行：ansible-playbook -i env/test playbook/nginx.yml -t first

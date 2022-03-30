@@ -1,0 +1,5 @@
+---
+- name: 进行prod-nginx第一次配置  
+  template: src=nginx.conf dest=/data/nginx.conf
+- name: start_prod
+  service: name=nginx state=started

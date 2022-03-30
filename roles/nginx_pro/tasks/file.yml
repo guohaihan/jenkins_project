@@ -1,0 +1,4 @@
+---
+- name: 进行prod-nginx配置  
+  template: src=nginx.conf dest=/data/nginx.conf
+  notify: restart_test

@@ -1,0 +1,7 @@
+---
+#- name: check_config
+#  command: nginx -t
+#  register: result
+
+- name: restart_test
+  service: name=nginx state=restarted

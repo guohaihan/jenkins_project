@@ -1,0 +1,12 @@
+---
+ 
+nginx_server_name: www.test-guozhi.com
+nginx_server_pro_name: www.pro-guozhi.com
+nginx_web_root: /opt/test/
+nginx_proxies:
+    - name: suspicious
+      location: /
+      port: 2368
+    - name: suspocoous-api
+      location: /api
+      port: 3000
